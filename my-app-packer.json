@@ -52,16 +52,16 @@
       "source": "/{{user `build_pack`}}",
       "destination": "target/{{user `build_pack`}}",
       "direction": "download"
+    },
+    {
+      "type": "shell",
+      "inline": ["while :; do sleep 5; done"]
     }
   ],
   "post-processors": [
     {
       "type": "artifice",
       "files": ["target/{{user `build_pack`}}"]
-    },
-    {
-      "type": "compress",
-      "output": "{{user `artifact`}}"
     }
   ]
 }
