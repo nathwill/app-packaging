@@ -12,6 +12,9 @@ yum -y --releasever=7 --nogpg \
   --installroot=${BUILD_ROOT} install \
   systemd passwd yum centos-release
 
+mknod -m 0644 ${BUILD_ROOT}/dev/random c 1 8
+mknod -m 0644 ${BUILD_ROOT}/dev/urandom c 1 9
+
 #
 # Configure
 #
