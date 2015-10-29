@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Release-specific steps
-# This shouldn't need to change much
+# Consumed by 'packer build'
 set -e
 
 APP_ROOT=/srv/app/current

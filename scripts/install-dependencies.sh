@@ -7,7 +7,7 @@ set -e
 # Install
 #
 
-yum -y install epel-release
+yum -y install openssl findutils epel-release
 
 # ruby
 yum -y install \

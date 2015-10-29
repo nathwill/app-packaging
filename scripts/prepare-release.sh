@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# release-specific build step that runs before either
-# the app is uploaded or dependencies are installed
+# prepare the cleanroom build target
+# consumed by 'packer build'
 set -e
 
 BUILD_ROOT=/build
@@ -10,7 +10,7 @@ BUILD_ROOT=/build
 #
 yum -y --releasever=7 --nogpg \
   --installroot=${BUILD_ROOT} install \
-  systemd passwd yum centos-release openssl
+  systemd passwd yum centos-release
 
 #
 # Configure
@@ -23,7 +23,7 @@ nameserver 8.8.8.8
 options timeout:2
 EOF
 
-chroot ${BUILD_ROOT} useradd -r -s /sbin/nologin -u 1013 -g 1013 \
+chroot ${BUILD_ROOT} useradd -r -s /sbin/nologin -u 1013 -g 0 \
   -r -d /srv/app -c 'Default Application User' deploy
 
 #

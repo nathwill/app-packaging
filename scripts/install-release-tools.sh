@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Install release tooling
-# This shouldn't need to change much
+# Consumed by 'vagrant up'
 set -e
 
 # Install
