@@ -45,7 +45,7 @@
       "type": "shell",
       "inline": [
          "rm -rf /build/scripts",
-         "tar czf /build.tar.gz /build"
+         "tar czf /build.tar.gz --strip-components=1 /build"
       ]
     },
     {

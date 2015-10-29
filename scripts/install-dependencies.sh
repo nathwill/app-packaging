@@ -1,10 +1,28 @@
 #!/usr/bin/env bash
+# Install application runtime dependencies
 set -e
 
+#
 # Install
-yum -y install ruby rubygem-bundler
+#
 
+# ruby
+yum -y install \
+  gcc-c++ patch readline readline-devel zlib zlib-devel subsersion \
+  libffi-devel openssl-devel make bzip2 autoconf automake autoconf \
+  libtool bison libxml2 libxml2-devel libxslt libxslt-devel git
+
+[ -d /opt/ruby-build ] || \
+  git clone https://github.com/sstephenson/ruby-build.git /opt/ruby-build
+PREFIX=/usr /opt/ruby-build/install.sh
+ruby-build 2.2.3 /usr/local
+gem install bundler
+
+#
 # Configure
+#
 
+#
 # Manage
+#
 

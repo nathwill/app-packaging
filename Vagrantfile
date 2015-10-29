@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
 
   config.berkshelf.enabled = false if Vagrant.has_plugin?('vagrant-berkshelf')
   config.vm.provision 'update', type: 'shell', inline: 'yum -y upgrade'
-  %w( dependencies services release-tools ).each do |p|
+  %w( release-tools dependencies services ).each do |p|
     config.vm.provision p, type: 'shell', path: "scripts/install-#{p}.sh"
   end
 end

@@ -3,10 +3,11 @@
 set -e
 
 # Install
-curl -sSL https://get.docker.com/ | sh
+[ -f /usr/bin/docker ] || (curl -sSL https://get.docker.com/ | sh)
 yum -y install unzip
-curl -sS -L https://dl.bintray.com/mitchellh/packer/packer_0.8.6_linux_amd64.zip -o /tmp/packer.zip
-unzip /tmp/packer.zip -d /usr/local/bin
+[ -f /usr/local/bin/packer ] || (curl -sS -L \
+  https://dl.bintray.com/mitchellh/packer/packer_0.8.6_linux_amd64.zip \
+  -o /tmp/packer.zip; unzip /tmp/packer.zip -d /usr/local/bin)
 
 # Configure
 usermod -a -G docker vagrant
