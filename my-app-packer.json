@@ -50,14 +50,18 @@
     {
       "type": "file",
       "source": "/{{user `build_pack`}}",
-      "destination": "target/{{user `artifact`}}",
+      "destination": "{{user `artifact`}}",
       "direction": "download"
+    },
+    {
+      "type": "shell",
+      "inline": ["while :; do sleep 5; done"]
     }
   ],
   "post-processors": [
     {
       "type": "artifice",
-      "files": ["target/{{user `artifact`}}"]
+      "files": ["{{user `artifact`}}"]
     }
   ]
 }
