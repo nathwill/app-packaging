@@ -4,7 +4,8 @@
   "variables": {
     "base_image": "centos:7",
     "source": "{{env `PWD`}}",
-    "service_unit": "config/my-app.service"
+    "service_unit": "config/my-app.service",
+    "artifact": "my-app-latest.tar.gz"
   },
   "builders": [
     {
@@ -44,8 +45,8 @@
     {
       "type": "shell",
       "inline": [
-         "rm -rf /build/scripts",
-         "cd /build && tar -czf /build.tar.gz ."
+        "rm -rf /build/scripts",
+        "cd /build && tar -czf /build.tar.gz ."
       ]
     },
     {
@@ -53,6 +54,12 @@
       "source": "/build.tar.gz",
       "destination": "build.tar.gz",
       "direction": "download"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "artifice",
+      "files": ["{{user `artifact`}}"]
     }
   ]
 }
