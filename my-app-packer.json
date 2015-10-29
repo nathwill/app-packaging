@@ -5,7 +5,7 @@
     "base_image": "centos:7",
     "source": "{{env `PWD`}}",
     "service_unit": "config/my-app.service",
-    "artifact": "my-app-latest.tar.gz"
+    "artifact": "target/my-app-latest.tar.gz"
   },
   "builders": [
     {
@@ -39,27 +39,25 @@
       "inline": [
         "chroot /build /scripts/install-dependencies.sh",
         "chroot /build /scripts/build-release.sh",
-        "chroot /build yum -y clean all"
-      ]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "rm -rf /build/scripts",
-        "cd /build && tar -czf /build.tar.gz ."
+        "chroot /build yum -y clean all",
+        "rm -rf /build/scripts"
       ]
     },
     {
       "type": "file",
-      "source": "/build.tar.gz",
-      "destination": "build.tar.gz",
+      "source": "/build",
+      "destination": "target",
       "direction": "download"
     }
   ],
   "post-processors": [
     {
       "type": "artifice",
-      "files": ["{{user `artifact`}}"]
+      "files": ["target/build"]
+    },
+    {
+      "type": "compress",
+      "output": "{{user `artifact`}}"
     }
   ]
 }
