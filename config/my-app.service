@@ -6,6 +6,8 @@ WantedBy=multi-user.target
 
 [Service]
 Type=simple
-WorkingDirectory=/my-app
+User=deploy
+WorkingDirectory=/srv/app/current
+EnvironmentFile=/srv/app/environment
 ExecStart=/usr/bin/bundle exec rackup -p 8080
 Restart=always

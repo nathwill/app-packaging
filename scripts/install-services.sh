@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Install external service dependencies
-# If you add something here, tell ops!
+# * IMPORTANT *
+# If you add something here, chances are
+# you'll need to let ops know about it.
 
 set -e
 

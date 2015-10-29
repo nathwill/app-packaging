@@ -25,13 +25,13 @@
     },
     {
       "type": "file",
-      "source": "{{user `source`}}/",
-      "destination": "/build/my-app"
+      "source": "{{user `source`}}",
+      "destination": "/build/srv/app/current"
     },
     {
       "type": "file",
       "source": "{{user `service_unit`}}",
-      "destination": "/build/etc/systemd/system/my-app.service"
+      "destination": "/build/etc/systemd/system/app.service"
     },
     {
       "type": "shell",
