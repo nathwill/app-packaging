@@ -3,7 +3,7 @@
   "min_packer_version": "0.8.6",
   "variables": {
     "build_root": "/build",
-    "build_pack": "build.tar",
+    "build_pack": "build.tar.gz",
     "base_image": "centos:7",
     "source": "{{env `PWD`}}",
     "service_unit": "config/my-app.service",
@@ -44,24 +44,20 @@
         "chroot {{user `build_root`}} yum -y clean all",
         "rm -rf {{user `build_root`}}/scripts",
         "rm -rf {{user `build_root`}}/target",
-        "cd {{user `build_root`}} && tar cpf /{{user `build_pack`}} ."
+        "cd {{user `build_root`}} && tar cpzf /{{user `build_pack`}} ."
       ]
     },
     {
       "type": "file",
       "source": "/{{user `build_pack`}}",
-      "destination": "target/{{user `build_pack`}}",
+      "destination": "target/{{user `artifact`}}",
       "direction": "download"
     }
   ],
   "post-processors": [
     {
       "type": "artifice",
-      "files": ["target/{{user `build_pack`}}"]
-    },
-    {
-      "type": "compress",
-      "output": "{{user `artifact`}}"
+      "files": ["target/{{user `artifact`}}"]
     }
   ]
 }
