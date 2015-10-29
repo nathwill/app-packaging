@@ -26,7 +26,7 @@ nameserver 8.8.8.8
 options timeout:2
 EOF
 
-chroot ${BUILD_ROOT} useradd -r -s /sbin/nologin -u 1013 -g 0 \
+chroot ${BUILD_ROOT} useradd -r -s /bin/bash -u 1013 -g 0 \
   -r -d /srv/app -c 'Default Application User' deploy
 
 #

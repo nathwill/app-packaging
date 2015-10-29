@@ -9,5 +9,5 @@ Type=simple
 User=deploy
 WorkingDirectory=/srv/app/current
 EnvironmentFile=/srv/app/environment
-ExecStart=/usr/bin/bundle exec rackup -p 8080
+ExecStart=/usr/bin/bundle exec rackup -o 0.0.0.0 -p 8080
 Restart=always
