@@ -1,0 +1,58 @@
+{
+  "description": "build my-app releases",
+  "min_packer_version": "0.8.6",
+  "variables": {
+    "base_image": "centos:7",
+    "source": "{{env `PWD`}}",
+    "service_unit": "config/my-app.service"
+  },
+  "builders": [
+    {
+      "type": "docker",
+      "image": "{{user `base_image`}}",
+      "discard": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/prepare-release.sh"
+    },
+    {
+      "type": "file",
+      "source": "scripts",
+      "destination": "/build"
+    },
+    {
+      "type": "file",
+      "source": "{{user `source`}}/",
+      "destination": "/build/my-app"
+    },
+    {
+      "type": "file",
+      "source": "{{user `service_unit`}}",
+      "destination": "/build/etc/systemd/system/my-app.service"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "chroot /build /scripts/install-dependencies.sh",
+        "chroot /build /scripts/build-release.sh",
+        "chroot /build yum -y clean all"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+         "rm -rf /build/scripts",
+         "tar czf /build.tar.gz /build"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "/build.tar.gz",
+      "destination": "build.tar.gz",
+      "direction": "download"
+    }
+  ]
+}
