@@ -1,0 +1,8 @@
+[Unit]
+Description=restart my app, hard!
+
+[Install]
+WantedBy=multi-user.target
+
+[Path]
+PathExists=/srv/my-app/hard-restart.txt

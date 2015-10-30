@@ -1,0 +1,8 @@
+[Unit]
+Description=restart app on new deployment
+
+[Install]
+WantedBy=multi-user.target
+
+[Path]
+PathModified=/srv/my-app/restart.txt

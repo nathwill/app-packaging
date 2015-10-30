@@ -1,0 +1,8 @@
+[Unit]
+Description=restart my app, hard!
+
+[Service]
+Type=oneshot
+User=deploy
+ExecStart=/usr/bin/systemctl restart my-app.service
+ExecStartPost=-/usr/bin/rm -f /srv/my-app/hard-restart.txt

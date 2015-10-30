@@ -1,13 +1,8 @@
 [Unit]
-Description="My App Wow!"
-
-[Install]
-WantedBy=multi-user.target
+Description=My App, Wow!
 
 [Service]
-Type=simple
 User=deploy
-WorkingDirectory=/srv/app/current
-EnvironmentFile=/srv/app/environment
-ExecStart=/usr/bin/bundle exec rackup -o 0.0.0.0 -p 8080
-Restart=always
+RootDirectory=/srv/my-app/current
+WorkingDirectory=/srv/my-app/current
+ExecStart=/usr/bin/bundle exec eye load config/my-app.eye -f

@@ -7,6 +7,7 @@ set -e
 # Install
 #
 
+# core reqs
 yum -y install openssl findutils epel-release
 
 # ruby

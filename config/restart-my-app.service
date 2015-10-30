@@ -1,0 +1,10 @@
+[Unit]
+Description=restart my app, wow!
+
+[Service]
+Type=oneshot
+User=deploy
+RootDirectory=/srv/my-app/current
+WorkingDirectory=/srv/my-app/current
+ExecStart=/usr/bin/bundle exec eye restart all
+ExecStartPost=-/usr/bin/rm -f /srv/my-app/restart.txt

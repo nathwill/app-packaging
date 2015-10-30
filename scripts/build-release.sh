@@ -13,5 +13,3 @@ BUNDLE_GEMFILE=${APP_ROOT}/Gemfile \
   --without development test
 
 chown -R deploy: ${APP_ROOT}
-
-systemctl enable app.service

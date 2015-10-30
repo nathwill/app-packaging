@@ -1,0 +1,2 @@
+---
+BUNDLE_BUILD__SIGAR: --with-cppflags="-fgnu89-inline"
